@@ -5,8 +5,13 @@ interface Props {
   rows: CashFlowRow[];
 }
 
-function usd(n: number): string {
-  return n.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+function usd(n: number, hideCents = false): string {
+  return n.toLocaleString('en-US', { 
+    style: 'currency', 
+    currency: 'USD',
+    minimumFractionDigits: hideCents ? 0 : 2,
+    maximumFractionDigits: hideCents ? 0 : 2,
+  });
 }
 
 export function CashFlowTable({ rows }: Props) {
@@ -20,11 +25,11 @@ export function CashFlowTable({ rows }: Props) {
         <table className="cash-flow-table">
           <thead>
             <tr>
-              <th>Period</th>
-              <th>Payment Date</th>
-              <th>Coupon Payment</th>
-              <th>Cumulative Interest</th>
-              <th>Remaining Principal</th>
+              <th><span className="full-text">Period</span><span className="short-text">P.</span></th>
+              <th><span className="full-text">Payment Date</span><span className="short-text">Date</span></th>
+              <th><span className="full-text">Coupon Payment</span><span className="short-text">Coupon</span></th>
+              <th><span className="full-text">Cumulative Interest</span><span className="short-text">Interest</span></th>
+              <th><span className="full-text">Remaining Principal</span><span className="short-text">Principal</span></th>
             </tr>
           </thead>
           <tbody>

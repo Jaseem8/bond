@@ -70,6 +70,8 @@
   border-bottom: 1px solid var(--clr-border);
 }
 
+.short-text { display: none; }
+
 .cash-flow-table th:first-child { text-align: left; border-top-left-radius: var(--radius-lg); }
 .cash-flow-table th:last-child { border-top-right-radius: var(--radius-lg); }
 
@@ -92,9 +94,19 @@
 
 /* ── Responsive ── */
 @media (max-width: 860px) {
+  .full-text { display: none; }
+  .short-text { display: inline; }
+  
   .cash-flow-wrapper {
-    height: 500px; /* Fixed height on mobile to keep scroll in context */
+    height: 550px; 
     overflow: hidden;
+    width: 100%;
+  }
+
+  .cash-flow-table th, 
+  .cash-flow-table td {
+    padding: 8px 6px;
+    font-size: 11px;
   }
 }
 
@@ -105,6 +117,23 @@
   }
   .cash-flow-table th, 
   .cash-flow-table td {
+    padding: 6px 4px;
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 380px) {
+  .cash-flow-table th, 
+  .cash-flow-table td {
+    padding: 6px 2px;
+    font-size: 8.5px;
+    letter-spacing: -0.05em;
+  }
+  .table-heading {
     padding: 8px 12px;
+    font-size: 0.8rem;
+  }
+  .cash-flow-table th {
+    font-size: 7.5px;
   }
 }

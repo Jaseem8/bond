@@ -109,38 +109,49 @@
   }
   .app { 
     height: auto; 
-    overflow: visible; 
-    padding: 16px 12px; 
+    overflow-x: hidden; 
+    padding: 24px 16px; 
     width: 100%;
+    display: flex;
+    align-items: center; /* Center everything horizontally */
   }
   .app-header { 
     position: sticky; 
-    top: 8px; 
+    top: 12px; 
     z-index: 100; 
-    height: 64px;
-    padding: 0 16px;
-    margin-bottom: 16px;
-    border-radius: 20px;
+    height: 56px;
+    width: 100%;
+    max-width: 700px; /* Increased from 450px for better fit on tablets */
+    padding: 0 24px;
+    margin-bottom: 24px;
+    border-radius: 28px;
+    justify-content: center;
   }
+  .header-left { gap: 12px; }
   .logo-icon { font-size: 1.2rem; }
-  .logo-text { font-size: 1rem; }
+  .logo-text { font-size: 1.1rem; }
   .header-badge { display: none; }
 
   .app-main {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 800px; /* Increased from 500px to fill space better on tablets */
     height: auto;
     overflow: visible;
-    gap: 20px;
+    gap: 24px;
+    padding: 0;
   }
   .form-col, .results-col { 
+    width: 100%;
     height: auto; 
     overflow: visible; 
   }
   .header-title { display: none; }
 
   .empty-state {
-    padding: 40px 20px;
-    min-height: 200px;
+    padding: 48px 24px;
+    min-height: 250px;
   }
   .empty-state p {
     max-width: 100%;
