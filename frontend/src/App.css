@@ -1,0 +1,112 @@
+/* ── App shell: fills exactly 100vh, never scrolls ── */
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+/* ── Header: compact single bar ── */
+.app-header {
+  flex-shrink: 0;
+  height: var(--header-h);
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2vw;
+  border-bottom: 1px solid var(--clr-border);
+  background: rgba(22, 27, 34, 0.96);
+  backdrop-filter: blur(10px);
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 1vw;
+}
+
+.logo-icon { font-size: 1.3rem; }
+
+.logo-text {
+  font-size: var(--text-lg);
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--clr-primary), #a371f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.header-title {
+  font-size: var(--text-base);
+  color: var(--clr-muted);
+  font-weight: 500;
+  border-left: 1px solid var(--clr-border);
+  padding-left: 1vw;
+  margin-left: 0.5vw;
+}
+
+.header-badge {
+  font-size: var(--text-xs);
+  color: var(--clr-muted);
+  background: rgba(48, 54, 61, 0.7);
+  border: 1px solid var(--clr-border);
+  border-radius: 999px;
+  padding: 0.2vh 1vw;
+  letter-spacing: 0.04em;
+}
+
+/* ── Main: the remaining height exactly ── */
+.app-main {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 26vw 1fr;
+  gap: 1.5vw;
+  padding: 1.5vh 2vw;
+  height: calc(100vh - var(--header-h));
+  min-height: 0;        /* critical: lets grid children shrink */
+  overflow: hidden;
+}
+
+.form-col,
+.results-col {
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* ── Empty State ── */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 1vh;
+  background: var(--clr-surface);
+  border: 2px dashed var(--clr-border);
+  border-radius: var(--radius-lg);
+  text-align: center;
+  padding: 2vw;
+  animation: fadeSlideIn 0.35s ease both;
+}
+
+.empty-icon  { font-size: 3.5vh; opacity: 0.35; }
+.empty-state h3  { font-size: var(--text-lg); }
+.empty-state p   { color: var(--clr-muted); font-size: var(--text-sm); max-width: 22vw; line-height: 1.6; }
+.empty-state strong { color: var(--clr-primary); }
+
+/* ── Responsive (tablet/mobile still get scroll) ── */
+@media (max-width: 860px) {
+  html, body, #root { overflow: auto; height: auto; }
+  .app { height: auto; overflow: visible; }
+  .app-main {
+    grid-template-columns: 1fr;
+    height: auto;
+    overflow: visible;
+    padding: 1.5vh 4vw 4vh;
+  }
+  .form-col, .results-col { height: auto; overflow: visible; }
+  .header-title { display: none; }
+}
