@@ -15,11 +15,39 @@ function usd(n: number, hideCents = false): string {
 }
 
 export function CashFlowTable({ rows }: Props) {
+  const handleExportCSV = () => {
+    const headers = ['Period', 'Payment Date', 'Coupon Payment', 'Cumulative Interest', 'Remaining Principal'];
+    const csvContent = [
+      headers.join(','),
+      ...rows.map(row => [
+        row.period,
+        row.paymentDate,
+        row.couponPayment,
+        row.cumulativeInterest,
+        row.remainingPrincipal
+      ].join(','))
+    ].join('\n');
+
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    const url = URL.createObjectURL(blob);
+    link.setAttribute('href', url);
+    link.setAttribute('download', `bond_cashflow_${new Date().toISOString().split('T')[0]}.csv`);
+    link.style.visibility = 'hidden';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <div className="cash-flow-wrapper">
       <h3 className="table-heading">
         <span>📅</span> Cash Flow Schedule
         <span className="table-badge">{rows.length} periods</span>
+        <button className="export-btn" onClick={handleExportCSV} title="Download as CSV">
+          <span>📥</span> 
+          <span className="full-text">Export CSV</span>
+        </button>
       </h3>
       <div className="table-scroll">
         <table className="cash-flow-table">
