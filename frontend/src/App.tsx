@@ -12,9 +12,9 @@ export default function App() {
       {/* ── Compact single-bar header ── */}
       <header className="app-header">
         <div className="header-left">
-          <span className="logo-icon">💹</span>
-          <span className="logo-text">BondCalc</span>
-          <span className="header-title">Bond Yield Calculator</span>
+          <span className="logo-icon">🌐</span>
+          <span className="logo-text">BondSphere</span>
+          <span className="header-title">Precision Yield Analytics</span>
         </div>
         {/* <span className="header-badge">TypeScript · React · NestJS</span> */}
       </header>
@@ -36,11 +36,11 @@ export default function App() {
             <BondResults results={results} />
           ) : (
             <div className="empty-state">
-              <div className="empty-icon">📋</div>
-              <h3>No results yet</h3>
+              <div className="empty-icon">🔭</div>
+              <h3>Configure Instrument</h3>
               <p>
-                Fill in the bond parameters on the left and click{' '}
-                <strong>Calculate</strong>.
+                Enter the bond specifications on the left to begin 
+                <strong> Intelligence Analysis</strong>.
               </p>
             </div>
           )}

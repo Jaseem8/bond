@@ -19,8 +19,8 @@ export function BondForm({ form, loading, error, onChange, onSubmit }: Props) {
   return (
     <form className="bond-form" onSubmit={onSubmit} noValidate>
       <div className="form-header">
-        <span className="form-icon">📊</span>
-        <h2>Bond Parameters</h2>
+        <span className="form-icon">📑</span>
+        <h2>Instrument Configuration</h2>
       </div>
 
       <div className="form-fields">

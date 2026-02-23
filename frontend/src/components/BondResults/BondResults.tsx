@@ -39,7 +39,7 @@ export function BondResults({ results }: Props) {
   return (
     <section className="bond-results">
       <h2 className="results-heading">
-        <span className="results-icon">📈</span> Results
+        <span className="results-icon">🔬</span> Yield Intelligence
       </h2>
 
       <div className="metrics-grid">
