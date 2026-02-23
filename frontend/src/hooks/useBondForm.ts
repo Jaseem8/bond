@@ -34,20 +34,45 @@ export function useBondForm() {
   const handleSubmit = useCallback(
     async (e: React.FormEvent) => {
       e.preventDefault();
+      
+      // Basic Frontend Validation & Sanitization
+      const faceVal = Number(form.faceValue);
+      const coupon = Number(form.annualCouponRate);
+      const price = Number(form.marketPrice);
+      const years = Number(form.yearsToMaturity);
+
+      if (faceVal <= 0 || price <= 0 || years <= 0) {
+        setError('Values must be greater than zero.');
+        return;
+      }
+      
+      if (years > 100) {
+        setError('Maximum maturity is 100 years.');
+        return;
+      }
+
+      if (faceVal > 1_000_000_000 || price > 1_000_000_000) {
+        setError('Values are too large for calculation.');
+        return;
+      }
+
       setLoading(true);
       setError(null);
+      
       try {
         const inputs: BondInputs = {
-          faceValue: Number(form.faceValue),
-          annualCouponRate: Number(form.annualCouponRate) / 100, // % → decimal
-          marketPrice: Number(form.marketPrice),
-          yearsToMaturity: Number(form.yearsToMaturity),
+          faceValue: faceVal,
+          annualCouponRate: coupon / 100, // % → decimal
+          marketPrice: price,
+          yearsToMaturity: years,
           couponFrequency: Number(form.couponFrequency) as 1 | 2,
         };
         const data = await calculateBond(inputs);
         setResults(data);
       } catch (err: unknown) {
-        setError(err instanceof Error ? err.message : 'Something went wrong');
+        // Sanitize error message to prevent XSS or detail leakage
+        const rawMsg = err instanceof Error ? err.message : 'Something went wrong';
+        setError(rawMsg.replace(/<[^>]*>?/gm, '')); // Simple sanitization
       } finally {
         setLoading(false);
       }

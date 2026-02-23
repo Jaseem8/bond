@@ -3,6 +3,7 @@ import { IsNumber, IsIn, IsPositive, Min, Max } from 'class-validator';
 export class CalculateBondDto {
   @IsNumber()
   @IsPositive()
+  @Max(1000000000) // 1 Billion limit to prevent extreme calculation overflows
   faceValue: number;
 
   @IsNumber()
@@ -12,10 +13,12 @@ export class CalculateBondDto {
 
   @IsNumber()
   @IsPositive()
+  @Max(1000000000)
   marketPrice: number;
 
   @IsNumber()
-  @IsPositive()
+  @Min(0.1)
+  @Max(100) // Hard limit of 100 years to prevent DoS attacking cash flow loops
   yearsToMaturity: number;
 
   @IsIn([1, 2])
