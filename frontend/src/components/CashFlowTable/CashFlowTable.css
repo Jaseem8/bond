@@ -89,3 +89,22 @@
 
 .num-cell { font-variant-numeric: tabular-nums; font-weight: 500; }
 .principal-cell { color: #9CA3AF; }
+
+/* ── Responsive ── */
+@media (max-width: 860px) {
+  .cash-flow-wrapper {
+    height: 500px; /* Fixed height on mobile to keep scroll in context */
+    overflow: hidden;
+  }
+}
+
+@media (max-width: 480px) {
+  .table-heading {
+    padding: 12px 16px;
+    font-size: 0.9rem;
+  }
+  .cash-flow-table th, 
+  .cash-flow-table td {
+    padding: 8px 12px;
+  }
+}

@@ -83,3 +83,23 @@
 }
 .metric-card--discount .metric-value { color: #991B1B; }
 .metric-card--discount .metric-label { color: #B91C1C; }
+
+/* ── Responsive ── */
+@media (max-width: 1200px) {
+  .metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .metrics-grid {
+    grid-template-columns: 1fr;
+  }
+  .metric-value {
+    font-size: 1.5rem;
+  }
+  .results-heading {
+    font-size: 1.1rem;
+  }
+}

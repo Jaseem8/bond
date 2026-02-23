@@ -132,3 +132,12 @@
   border-radius: 50%;
   animation: spin 0.7s linear infinite;
 }
+
+/* ── Responsive ── */
+@media (max-width: 860px) {
+  .bond-form {
+    padding: 24px 20px;
+    height: auto;
+    overflow: visible;
+  }
+}

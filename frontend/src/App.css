@@ -99,18 +99,50 @@
 
 /* ── Responsive ── */
 @media (max-width: 1024px) {
-  .app-main { grid-template-columns: 350px 1fr; }
+  .app-main { grid-template-columns: 320px 1fr; }
 }
 
 @media (max-width: 860px) {
-  html, body, #root { overflow: auto; height: auto; }
-  .app { height: auto; overflow: visible; padding: 2vh 4vw; }
-  .app-header { position: sticky; top: 1vh; z-index: 50; }
+  html, body, #root { 
+    overflow-y: auto !important; 
+    height: auto !important; 
+  }
+  .app { 
+    height: auto; 
+    overflow: visible; 
+    padding: 16px 12px; 
+    width: 100%;
+  }
+  .app-header { 
+    position: sticky; 
+    top: 8px; 
+    z-index: 100; 
+    height: 64px;
+    padding: 0 16px;
+    margin-bottom: 16px;
+    border-radius: 20px;
+  }
+  .logo-icon { font-size: 1.2rem; }
+  .logo-text { font-size: 1rem; }
+  .header-badge { display: none; }
+
   .app-main {
     grid-template-columns: 1fr;
     height: auto;
     overflow: visible;
+    gap: 20px;
   }
-  .form-col, .results-col { height: auto; overflow: visible; }
+  .form-col, .results-col { 
+    height: auto; 
+    overflow: visible; 
+  }
   .header-title { display: none; }
+
+  .empty-state {
+    padding: 40px 20px;
+    min-height: 200px;
+  }
+  .empty-state p {
+    max-width: 100%;
+  }
 }
