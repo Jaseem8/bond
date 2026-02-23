@@ -2,118 +2,132 @@
   background: var(--clr-surface);
   border: 1px solid var(--clr-border);
   border-radius: var(--radius-lg);
-  padding: 1.5vh 1.4vw;
-  box-shadow: var(--shadow-card);
+  padding: 3vh 2vw;
+  box-shadow: var(--shadow-sm);
   display: flex;
   flex-direction: column;
-  gap: 1.1vh;
+  gap: 1.5vh;
   height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
   animation: fadeSlideIn 0.4s ease both;
 }
 
-/* thin scrollbar if content ever overflows on small screens */
-.bond-form::-webkit-scrollbar { width: 4px; }
+.bond-form::-webkit-scrollbar { width: 5px; }
 .bond-form::-webkit-scrollbar-track { background: transparent; }
-.bond-form::-webkit-scrollbar-thumb { background: var(--clr-border); border-radius: 2px; }
+.bond-form::-webkit-scrollbar-thumb { background: var(--clr-border); border-radius: 10px; }
 
 .form-header {
   display: flex;
   align-items: center;
-  gap: 0.6vw;
-  margin-bottom: 0.4vh;
+  gap: 0.8vw;
+  margin-bottom: 0.8vh;
 }
 
-.form-icon   { font-size: 1.1rem; }
-.form-header h2 { font-size: var(--text-lg); }
+.form-icon { font-size: 1.4rem; }
+.form-header h2 { 
+  font-size: var(--text-lg); 
+  font-weight: 800;
+  color: var(--clr-text);
+}
 
 .form-fields {
   display: flex;
   flex-direction: column;
-  gap: 1vh;
+  gap: 1.2vh;
   flex: 1;
 }
 
 .form-label {
   display: flex;
   flex-direction: column;
-  gap: 0.3vh;
+  gap: 0.5vh;
 }
 
 .label-text {
-  font-size: var(--text-xs);
+  font-size: 11px;
   color: var(--clr-muted);
-  font-weight: 600;
-  letter-spacing: 0.05em;
+  font-weight: 700;
   text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
 
 .form-input,
 .form-select {
-  background: var(--clr-bg);
-  border: 1px solid var(--clr-border);
-  border-radius: var(--radius-sm);
+  background: #F3F4F6; /* Light gray background like Evalzz inputs */
+  border: 1.5px solid transparent;
+  border-radius: var(--radius-md);
   color: var(--clr-text);
   font-size: var(--text-sm);
   font-family: inherit;
-  padding: 0.55vh 0.7vw;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  padding: 0.8vh 1vw;
+  transition: all 0.2s ease;
   width: 100%;
 }
 
 .form-input:focus,
 .form-select:focus {
   outline: none;
+  background: #FFFFFF;
   border-color: var(--clr-primary);
   box-shadow: var(--shadow-glow);
 }
 
-.form-input::placeholder { color: var(--clr-muted); opacity: 0.55; }
-.form-select option       { background: var(--clr-surface); }
+.form-input::placeholder { color: var(--clr-muted); opacity: 0.5; }
 
 .form-error {
-  color: var(--clr-discount);
+  color: #B91C1C;
   font-size: var(--text-xs);
-  background: rgba(248,81,73,0.1);
-  border: 1px solid rgba(248,81,73,0.3);
+  background: #FEF2F2;
+  border: 1px solid #FEE2E2;
   border-radius: var(--radius-sm);
-  padding: 0.5vh 0.6vw;
+  padding: 0.8vh 1vw;
+  font-weight: 500;
 }
 
 .form-submit {
-  background: linear-gradient(135deg, var(--clr-primary), #a371f7);
-  color: #fff;
-  font-weight: 700;
-  font-size: var(--text-sm);
+  background: var(--clr-primary);
+  color: #FFFFFF;
+  font-weight: 800;
+  font-size: var(--text-base);
   font-family: inherit;
   border: none;
-  border-radius: var(--radius-md);
-  padding: 1vh 0;
+  border-radius: var(--radius-lg); /* Very rounded button */
+  padding: 1.2vh 0;
   cursor: pointer;
-  transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
-  letter-spacing: 0.03em;
-  margin-top: 0.5vh;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  letter-spacing: 0.02em;
+  margin-top: 1vh;
+  box-shadow: 0 4px 14px 0 rgba(34, 197, 94, 0.25);
 }
 
 .form-submit:hover:not(:disabled) {
-  opacity: 0.88;
-  transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(88,166,255,0.3);
+  background: var(--clr-primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px 0 rgba(34, 197, 94, 0.35);
 }
-.form-submit:disabled { opacity: 0.45; cursor: not-allowed; }
+
+.form-submit:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.form-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+}
 
 .btn-loading {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5vw;
+  gap: 0.6vw;
 }
 
 .spinner {
-  width: 14px;
-  height: 14px;
-  border: 2px solid rgba(255,255,255,0.3);
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
   border-top-color: #fff;
   border-radius: 50%;
   animation: spin 0.7s linear infinite;

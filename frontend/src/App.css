@@ -1,24 +1,26 @@
-/* ── App shell: fills exactly 100vh, never scrolls ── */
 .app {
   display: flex;
   flex-direction: column;
   height: 100vh;
   width: 100vw;
   overflow: hidden;
+  padding: 1.5vh 1.5vw; /* Padding around the whole app for the 'floating' effect */
 }
 
-/* ── Header: compact single bar ── */
+/* ── Evalzz-style Floating Pill Header ── */
 .app-header {
   flex-shrink: 0;
   height: var(--header-h);
-  min-height: 48px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 2vw;
-  border-bottom: 1px solid var(--clr-border);
-  background: rgba(22, 27, 34, 0.96);
-  backdrop-filter: blur(10px);
+  background: rgba(17, 24, 39, 0.95); /* Dark pill like Evalzz */
+  backdrop-filter: blur(12px);
+  border-radius: var(--radius-xl);
+  margin-bottom: 2vh;
+  box-shadow: var(--shadow-lg);
+  color: white;
 }
 
 .header-left {
@@ -27,45 +29,42 @@
   gap: 1vw;
 }
 
-.logo-icon { font-size: 1.3rem; }
+.logo-icon { font-size: 1.5rem; }
 
 .logo-text {
   font-size: var(--text-lg);
-  font-weight: 800;
-  background: linear-gradient(135deg, var(--clr-primary), #a371f7);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  font-weight: 900;
+  color: #FFFFFF;
 }
 
 .header-title {
   font-size: var(--text-base);
-  color: var(--clr-muted);
+  color: rgba(255, 255, 255, 0.6);
   font-weight: 500;
-  border-left: 1px solid var(--clr-border);
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
   padding-left: 1vw;
   margin-left: 0.5vw;
 }
 
 .header-badge {
   font-size: var(--text-xs);
-  color: var(--clr-muted);
-  background: rgba(48, 54, 61, 0.7);
-  border: 1px solid var(--clr-border);
+  color: #FFFFFF;
+  background: var(--clr-primary);
   border-radius: 999px;
-  padding: 0.2vh 1vw;
-  letter-spacing: 0.04em;
+  padding: 0.5vh 1.2vw;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
-/* ── Main: the remaining height exactly ── */
+/* ── Main Layout ── */
 .app-main {
   flex: 1;
   display: grid;
-  grid-template-columns: 26vw 1fr;
+  grid-template-columns: 28vw 1fr;
   gap: 1.5vw;
-  padding: 1.5vh 2vw;
-  height: calc(100vh - var(--header-h));
-  min-height: 0;        /* critical: lets grid children shrink */
+  height: calc(100vh - var(--header-h) - 5vh);
+  min-height: 0;
   overflow: hidden;
 }
 
@@ -76,36 +75,41 @@
   overflow: hidden;
 }
 
-/* ── Empty State ── */
+/* ── Empty State: Bento-style ── */
 .empty-state {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100%;
-  gap: 1vh;
+  gap: 2vh;
   background: var(--clr-surface);
-  border: 2px dashed var(--clr-border);
+  border: 1px solid var(--clr-border);
   border-radius: var(--radius-lg);
   text-align: center;
-  padding: 2vw;
-  animation: fadeSlideIn 0.35s ease both;
+  padding: 3vw;
+  box-shadow: var(--shadow-sm);
+  animation: fadeSlideIn 0.4s ease both;
 }
 
-.empty-icon  { font-size: 3.5vh; opacity: 0.35; }
-.empty-state h3  { font-size: var(--text-lg); }
-.empty-state p   { color: var(--clr-muted); font-size: var(--text-sm); max-width: 22vw; line-height: 1.6; }
-.empty-state strong { color: var(--clr-primary); }
+.empty-icon { font-size: 5vh; filter: grayscale(1); opacity: 0.4; }
+.empty-state h3 { font-size: var(--text-xl); color: var(--clr-text); font-weight: 800; }
+.empty-state p { color: var(--clr-muted); font-size: var(--text-base); max-width: 25vw; line-height: 1.6; }
+.empty-state strong { color: var(--clr-primary); font-weight: 700; }
 
-/* ── Responsive (tablet/mobile still get scroll) ── */
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .app-main { grid-template-columns: 350px 1fr; }
+}
+
 @media (max-width: 860px) {
   html, body, #root { overflow: auto; height: auto; }
-  .app { height: auto; overflow: visible; }
+  .app { height: auto; overflow: visible; padding: 2vh 4vw; }
+  .app-header { position: sticky; top: 1vh; z-index: 50; }
   .app-main {
     grid-template-columns: 1fr;
     height: auto;
     overflow: visible;
-    padding: 1.5vh 4vw 4vh;
   }
   .form-col, .results-col { height: auto; overflow: visible; }
   .header-title { display: none; }

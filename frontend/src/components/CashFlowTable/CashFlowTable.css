@@ -1,38 +1,39 @@
-/* Wrapper grows to fill remaining height in the flex column */
 .cash-flow-wrapper {
   flex: 1;
-  min-height: 0;          /* essential for flex children to shrink */
+  min-height: 0;
   display: flex;
   flex-direction: column;
   background: var(--clr-surface);
   border: 1px solid var(--clr-border);
   border-radius: var(--radius-lg);
   overflow: hidden;
-  box-shadow: var(--shadow-card);
+  box-shadow: var(--shadow-sm);
+  animation: fadeSlideIn 0.6s ease both;
 }
 
 .table-heading {
   display: flex;
   align-items: center;
-  gap: 0.5vw;
+  gap: 0.8vw;
   font-size: var(--text-base);
-  padding: 1vh 1.2vw;
+  padding: 1.5vh 1.5vw;
   border-bottom: 1px solid var(--clr-border);
   flex-shrink: 0;
+  font-weight: 800;
+  color: var(--clr-text);
 }
 
 .table-badge {
   margin-left: auto;
-  background: rgba(88,166,255,0.12);
-  color: var(--clr-primary);
-  border: 1px solid rgba(88,166,255,0.28);
+  background: #EFF6FF;
+  color: #1D4ED8;
+  border: 1px solid #DBEAFE;
   border-radius: 999px;
-  padding: 0.2vh 0.8vw;
+  padding: 0.4vh 1vw;
   font-size: var(--text-xs);
-  font-weight: 600;
+  font-weight: 700;
 }
 
-/* Scrollable area — fills remaining space in the wrapper */
 .table-scroll {
   flex: 1;
   min-height: 0;
@@ -40,54 +41,51 @@
   overflow-x: auto;
 }
 
-/* Thin scrollbar */
-.table-scroll::-webkit-scrollbar { width: 5px; height: 5px; }
+.table-scroll::-webkit-scrollbar { width: 6px; height: 6px; }
 .table-scroll::-webkit-scrollbar-track { background: transparent; }
-.table-scroll::-webkit-scrollbar-thumb { background: var(--clr-border); border-radius: 3px; }
+.table-scroll::-webkit-scrollbar-thumb { background: #E5E7EB; border-radius: 10px; }
 
 .cash-flow-table {
   width: 100%;
-  border-collapse: collapse;
-  font-size: var(--text-xs);
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.8rem;
 }
 
-/* Sticky thead inside the scrollable div */
 .cash-flow-table thead {
   position: sticky;
   top: 0;
-  z-index: 2;
+  z-index: 10;
 }
 
 .cash-flow-table th {
-  background: rgba(22, 27, 34, 0.98);
-  backdrop-filter: blur(6px);
+  background: #F9FAFB;
   color: var(--clr-muted);
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.07em;
-  font-size: 0.68rem;
-  padding: 0.8vh 1vw;
+  letter-spacing: 0.05em;
+  font-size: 0.65rem;
+  padding: 1vh 1.5vw;
   text-align: right;
   border-bottom: 1px solid var(--clr-border);
-  white-space: nowrap;
 }
 
-.cash-flow-table th:first-child { text-align: left; }
+.cash-flow-table th:first-child { text-align: left; border-top-left-radius: var(--radius-lg); }
+.cash-flow-table th:last-child { border-top-right-radius: var(--radius-lg); }
 
 .cash-flow-table td {
-  padding: 0.55vh 1vw;
+  padding: 0.8vh 1.5vw;
   text-align: right;
-  border-bottom: 1px solid rgba(48,54,61,0.45);
-  color: var(--clr-text);
+  border-bottom: 1px solid #F3F4F6;
+  color: #374151;
   white-space: nowrap;
 }
 
-.cash-flow-table td:first-child { text-align: left; }
-
-.cash-flow-table tbody tr:hover  { background: rgba(88,166,255,0.06); }
+.cash-flow-table td:first-child { text-align: left; font-weight: 700; color: var(--clr-muted); }
+.cash-flow-table tbody tr:hover { background: #F9FAFB; }
 .cash-flow-table tbody tr:last-child td { border-bottom: none; }
-.row-alt { background: rgba(255,255,255,0.015); }
 
-.period-cell  { font-weight: 700; color: var(--clr-muted) !important; }
-.num-cell     { font-variant-numeric: tabular-nums; }
-.principal-cell { color: var(--clr-muted) !important; opacity: 0.7; }
+.row-alt { background: #FCFDFF; }
+
+.num-cell { font-variant-numeric: tabular-nums; font-weight: 500; }
+.principal-cell { color: #9CA3AF; }
