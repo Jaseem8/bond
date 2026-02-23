@@ -47,7 +47,7 @@
 }
 
 .metric-label {
-  font-size: 10px;
+  font-size: clamp(9px, 0.7vw, 10px);
   color: var(--clr-muted);
   font-weight: 700;
   text-transform: uppercase;
@@ -55,7 +55,8 @@
 }
 
 .metric-value {
-  font-size: var(--text-2xl);
+  /* Fluid font size: Scales from 1.25rem (20px) to var(--text-2xl) (approx 24-28px) */
+  font-size: clamp(1.15rem, 1.8vw, var(--text-2xl));
   font-weight: 900;
   color: var(--clr-text);
   line-height: 1.1;
@@ -63,7 +64,7 @@
 }
 
 .metric-sub {
-  font-size: 0.7rem;
+  font-size: clamp(0.6rem, 0.8vw, 0.7rem);
   color: var(--clr-muted);
   font-weight: 500;
   margin-top: 0.4vh;
@@ -92,6 +93,15 @@
   }
 }
 
+@media (max-width: 860px) {
+  .metric-value {
+    font-size: clamp(1.2rem, 3.5vw, 1.6rem);
+  }
+  .results-heading {
+    font-size: 1.25rem;
+  }
+}
+
 @media (max-width: 480px) {
   .metrics-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -101,9 +111,21 @@
     padding: 12px 10px;
   }
   .metric-value {
-    font-size: 1.25rem;
+    font-size: clamp(1rem, 5vw, 1.2rem);
   }
   .results-heading {
     font-size: 1.1rem;
+  }
+  .metric-label {
+    font-size: 8.5px;
+  }
+  .metric-sub {
+    font-size: 0.6rem;
+  }
+}
+
+@media (max-width: 350px) {
+  .metric-value {
+    font-size: 0.95rem;
   }
 }
