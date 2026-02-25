@@ -73,7 +73,10 @@
   height: 100%;
   min-height: 0;
   overflow: hidden;
+  transition: opacity 0.3s ease;
 }
+
+.mobile-nav { display: none; }
 
 /* ── Empty State: Bento-style ── */
 .empty-state {
@@ -110,36 +113,41 @@
   .app { 
     height: auto; 
     overflow-x: hidden; 
-    padding: 24px 16px; 
+    padding: 20px 16px; 
     width: 100%;
     display: flex;
-    align-items: center; /* Center everything horizontally */
+    flex-direction: column;
+    align-items: center;
   }
   .app-header { 
     position: sticky; 
-    top: 12px; 
+    top: 10px; 
     z-index: 100; 
-    height: 56px;
-    width: 100%;
-    max-width: 700px; /* Increased from 450px for better fit on tablets */
-    padding: 0 24px;
-    margin-bottom: 24px;
-    border-radius: 28px;
+    height: 46px;
+    width: 90%; 
+    max-width: 700px; 
+    padding: 0 16px;
+    margin-bottom: 20px;
+    border-radius: 23px;
+    display: flex;
+    align-items: center;
     justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
   }
-  .header-left { gap: 12px; }
-  .logo-icon { font-size: 1.2rem; }
-  .logo-text { font-size: 1.1rem; }
-  .header-badge { display: none; }
+  .header-left { gap: 8px; }
+  .logo-icon { font-size: 1.1rem; }
+  .logo-text { font-size: 0.95rem; }
+  .header-badge, .header-title { display: none; }
 
   .app-main {
     display: flex;
     flex-direction: column;
     width: 100%;
-    max-width: 800px; /* Increased from 500px to fill space better on tablets */
+    max-width: 1000px; 
     height: auto;
     overflow: visible;
-    gap: 24px;
+    gap: 20px;
     padding: 0;
   }
   .form-col, .results-col { 
@@ -147,13 +155,79 @@
     height: auto; 
     overflow: visible; 
   }
-  .header-title { display: none; }
 
   .empty-state {
-    padding: 48px 24px;
-    min-height: 250px;
+    padding: 40px 20px;
+    min-height: 200px;
   }
   .empty-state p {
     max-width: 100%;
+  }
+
+  /* ── Tab Switching Logic ── */
+  .app-main.active-tab-form .results-col { display: none; }
+  .app-main.active-tab-results .form-col { display: none; }
+  
+  .app-main.active-tab-results .results-col {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+  }
+
+  /* ── Floating Bottom Nav ── */
+  .mobile-nav {
+    display: flex;
+    position: fixed;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(17, 24, 39, 0.92);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    padding: 4px;
+    gap: 4px;
+    z-index: 1000;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+    width: 85%; 
+    max-width: 320px; 
+  }
+
+  .nav-item {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 26px;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  @media (max-width: 380px) {
+    .nav-text { display: none; }
+    .nav-item { padding: 8px; }
+    .nav-icon { font-size: 1.1rem; }
+    .mobile-nav { max-width: 120px; }
+    .logo-text { font-size: 0.85rem; }
+    .logo-icon { font-size: 0.9rem; }
+  }
+
+  .nav-item.active {
+    background: var(--clr-primary);
+    color: white;
+    box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+  }
+
+  .nav-icon { font-size: 1rem; }
+
+  body {
+    padding-bottom: 80px;
   }
 }

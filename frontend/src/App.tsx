@@ -1,13 +1,24 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { BondForm } from './components/BondForm/BondForm';
 import { BondResults } from './components/BondResults/BondResults';
+import { BondLoading } from './components/BondLoading/BondLoading';
 import { useBondForm } from './hooks/useBondForm';
 import { pingServer } from './api/api';
 import './App.css';
 
 export default function App() {
-  const { form, results, loading, takingLonger, error, handleChange, handleSubmit } =
+  const { form, results, loading, takingLonger, error, handleChange, handleSubmit: originalHandleSubmit } =
     useBondForm();
+  
+  const [activeTab, setActiveTab] = useState<'form' | 'results'>('form');
+
+  // Auto-switch to results tab on mobile when submitting
+  const handleSubmit = async (e: React.FormEvent) => {
+    await originalHandleSubmit(e);
+    if (window.innerWidth <= 860) {
+      setActiveTab('results');
+    }
+  };
 
   // "Wake up" the backend immediately on mount (Render Free Tier)
   useEffect(() => {
@@ -27,7 +38,7 @@ export default function App() {
       </header>
 
       {/* ── Two-column main — fills exactly the remaining vh ── */}
-      <main className="app-main">
+      <main className={`app-main active-tab-${activeTab}`}>
         <aside className="form-col">
           <BondForm
             form={form}
@@ -40,7 +51,9 @@ export default function App() {
         </aside>
 
         <section className="results-col">
-          {results ? (
+          {loading ? (
+            <BondLoading isTakingLonger={takingLonger} />
+          ) : results ? (
             <BondResults results={results} />
           ) : (
             <div className="empty-state">
@@ -54,6 +67,24 @@ export default function App() {
           )}
         </section>
       </main>
+
+      {/* ── Mobile Navigation Bar ── */}
+      <nav className="mobile-nav">
+        <button 
+          className={`nav-item ${activeTab === 'form' ? 'active' : ''}`}
+          onClick={() => setActiveTab('form')}
+        >
+          <span className="nav-icon">⚙️</span>
+          <span className="nav-text">Configure</span>
+        </button>
+        <button 
+          className={`nav-item ${activeTab === 'results' ? 'active' : ''}`}
+          onClick={() => setActiveTab('results')}
+        >
+          <span className="nav-icon">📈</span>
+          <span className="nav-text">Performance</span>
+        </button>
+      </nav>
     </div>
   );
 }

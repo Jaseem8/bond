@@ -30,15 +30,15 @@ export function BondResults({ results }: Props) {
 
   const highlight = isPremium ? 'premium' : isDiscount ? 'discount' : 'neutral';
   const statusLabel = isPremium
-    ? '📈 Trading at Premium'
+    ? '📈 Premium'
     : isDiscount
-    ? '📉 Trading at Discount'
-    : '⚖ Trading at Par';
+    ? '📉 Discount'
+    : '⚖ At Par';
   const statusSub = isPremium
-    ? 'Market price > Face value'
+    ? 'Market Price > Face Value'
     : isDiscount
-    ? 'Market price < Face value'
-    : 'Market price = Face value';
+    ? 'Market Price < Face Value'
+    : 'Market Price = Face Value';
 
   return (
     <section className="bond-results">
