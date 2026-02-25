@@ -85,6 +85,38 @@
   font-weight: 500;
 }
 
+.form-insight {
+  background: #F5F3FF; /* Light violet/blue background */
+  border: 1px solid #DDD6FE;
+  border-radius: var(--radius-md);
+  padding: 1.2vh 1vw;
+  display: flex;
+  gap: 0.8vw;
+  animation: fadeIn 0.4s ease;
+  margin-bottom: 0.5vh;
+}
+
+.insight-icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.insight-text h4 {
+  font-size: 9px;
+  color: #6D28D9;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 800;
+  margin-bottom: 2px;
+}
+
+.insight-text p {
+  font-size: 11px;
+  color: #4C1D95;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
 .form-submit {
   background: var(--clr-primary);
   color: #FFFFFF;

@@ -20,6 +20,20 @@ export default function App() {
     }
   };
 
+  const getInsight = () => {
+    if (!results) return null;
+    const { ytm, isDiscount, isPremium } = results;
+    const couponRate = Number(form.annualCouponRate) / 100;
+
+    if (isDiscount) {
+      return `Potential Gain: The YTM (${(ytm * 100).toFixed(2)}%) exceeds the coupon rate, suggesting capital appreciation at maturity.`;
+    }
+    if (isPremium) {
+      return `Premium Strategy: Consistent high income of ${(couponRate * 100).toFixed(2)}% offsets the capital adjustment over time.`;
+    }
+    return `Balanced Asset: Trading at par with a stable total return profile.`;
+  };
+
   // "Wake up" the backend immediately on mount (Render Free Tier)
   useEffect(() => {
     pingServer();
@@ -45,6 +59,7 @@ export default function App() {
             loading={loading}
             takingLonger={takingLonger}
             error={error}
+            insight={getInsight()}
             onChange={handleChange}
             onSubmit={handleSubmit}
           />

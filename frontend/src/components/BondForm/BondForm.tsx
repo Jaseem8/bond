@@ -12,11 +12,12 @@ interface Props {
   loading: boolean;
   takingLonger?: boolean;
   error: string | null;
+  insight?: string | null;
   onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
   onSubmit: (e: React.FormEvent) => void;
 }
 
-export function BondForm({ form, loading, takingLonger, error, onChange, onSubmit }: Props) {
+export function BondForm({ form, loading, takingLonger, error, insight, onChange, onSubmit }: Props) {
   return (
     <form className="bond-form" onSubmit={onSubmit} noValidate>
       <div className="form-header">
@@ -99,6 +100,16 @@ export function BondForm({ form, loading, takingLonger, error, onChange, onSubmi
       </div>
 
       {error && <p className="form-error">⚠ {error}</p>}
+
+      {insight && !error && !loading && (
+        <div className="form-insight">
+          <span className="insight-icon">💡</span>
+          <div className="insight-text">
+            <h4>Strategic Insight</h4>
+            <p>{insight}</p>
+          </div>
+        </div>
+      )}
 
       <button type="submit" className="form-submit" disabled={loading}>
         {loading ? (
