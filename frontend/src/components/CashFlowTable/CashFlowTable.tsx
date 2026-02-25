@@ -49,7 +49,7 @@ export function CashFlowTable({ rows }: Props) {
           <span className="table-badge">{rows.length} periods</span>
           <button className="export-btn" onClick={handleExportCSV} title="Download as CSV">
             <span>📥</span> 
-            <span className="full-text">Export CSV</span>
+            <span className="full-text">Export</span>
           </button>
         </div>
       </div>

@@ -48,26 +48,35 @@
 }
 
 .export-btn {
-  margin-left: 12px;
-  background: var(--clr-text);
-  color: white;
-  border: none;
-  border-radius: 12px;
-  padding: 6px 14px;
+  background: #f8fafc;
+  color: #64748b;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 5px 14px;
   font-size: 11px;
   font-weight: 700;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   align-items: center;
   gap: 6px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .export-btn:hover {
-  background: #1f2937;
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-sm);
+  background: #ffffff;
+  color: var(--clr-primary);
+  border-color: var(--clr-primary);
+  transform: translateY(-1.5px);
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.12);
+}
+
+.export-btn span:first-child {
+  font-size: 14px;
+  transition: transform 0.3s ease;
+}
+
+.export-btn:hover span:first-child {
+  transform: translateY(1px);
 }
 
 .export-btn:active {
@@ -146,6 +155,7 @@
 /* ── Responsive ── */
 @media (max-width: 860px) {
   .full-text { display: none; }
+  .export-btn .full-text { display: inline; }
   .short-text { display: inline; }
   
   .cash-flow-wrapper {
@@ -173,8 +183,8 @@
     font-size: 10px;
   }
   .export-btn {
-    padding: 6px 10px;
-    gap: 0;
+    padding: 6px 12px;
+    gap: 4px;
     margin-left: 8px;
   }
 }
