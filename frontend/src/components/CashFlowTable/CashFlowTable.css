@@ -127,8 +127,8 @@
 
 .short-text { display: none; }
 
-.cash-flow-table th:first-child { text-align: left; border-top-left-radius: var(--radius-lg); }
-.cash-flow-table th:last-child { border-top-right-radius: var(--radius-lg); }
+/* .cash-flow-table th:first-child { text-align: left; border-top-left-radius: var(--radius-lg); }
+.cash-flow-table th:last-child { border-top-right-radius: var(--radius-lg); } */
 
 .cash-flow-table td {
   padding: 12px 18px;
