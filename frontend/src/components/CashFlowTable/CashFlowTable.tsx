@@ -41,14 +41,18 @@ export function CashFlowTable({ rows }: Props) {
 
   return (
     <div className="cash-flow-wrapper">
-      <h3 className="table-heading">
-        <span>📅</span> Cash Flow Schedule
-        <span className="table-badge">{rows.length} periods</span>
-        <button className="export-btn" onClick={handleExportCSV} title="Download as CSV">
-          <span>📥</span> 
-          <span className="full-text">Export CSV</span>
-        </button>
-      </h3>
+      <div className="table-heading">
+        <div className="heading-left">
+          <span>📅</span> Cash Flow Schedule
+        </div>
+        <div className="heading-actions">
+          <span className="table-badge">{rows.length} periods</span>
+          <button className="export-btn" onClick={handleExportCSV} title="Download as CSV">
+            <span>📥</span> 
+            <span className="full-text">Export CSV</span>
+          </button>
+        </div>
+      </div>
       <div className="table-scroll">
         <table className="cash-flow-table">
           <thead>

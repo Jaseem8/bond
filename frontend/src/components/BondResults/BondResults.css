@@ -25,6 +25,7 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 1.25vw;
   flex-shrink: 0;
+  align-items: stretch; /* Maintain visual symmetry */
 }
 
 .metric-card {
@@ -34,10 +35,12 @@
   padding: 1.5vh 1.25vw;
   display: flex;
   flex-direction: column;
-  gap: 0.4vh;
+  justify-content: space-between; /* Spread label and subtext */
+  gap: 0.5vh;
   box-shadow: var(--shadow-sm);
   transition: all 0.2s ease;
   cursor: default;
+  min-height: 120px;
 }
 
 .metric-card:hover { 
@@ -55,12 +58,19 @@
 }
 
 .metric-value {
-  /* Fluid font size: Scales from 1.25rem (20px) to var(--text-2xl) (approx 24-28px) */
+  /* Fluid font size */
   font-size: clamp(1.15rem, 1.8vw, var(--text-2xl));
   font-weight: 900;
   color: var(--clr-text);
   line-height: 1.1;
   letter-spacing: -0.03em;
+  word-break: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box_orient: vertical;
 }
 
 .metric-sub {

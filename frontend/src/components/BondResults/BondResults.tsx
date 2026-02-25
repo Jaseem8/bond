@@ -8,7 +8,11 @@ interface Props {
 }
 
 function pct(n: number): string {
-  return `${(n * 100).toFixed(4)}%`;
+  if (!isFinite(n) || isNaN(n)) return 'N/A';
+  return (n * 100).toLocaleString('en-US', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 4,
+  }) + '%';
 }
 function usd(n: number): string {
   return n.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
@@ -51,7 +55,7 @@ export function BondResults({ results }: Props) {
         <MetricCard
           label="Yield to Maturity"
           value={pct(ytm)}
-          sub="Annualised via Newton-Raphson"
+          sub="Bisection Root Finder"
         />
         <MetricCard
           label="Total Interest Earned"

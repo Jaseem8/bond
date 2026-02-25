@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
 import { APP_GUARD } from '@nestjs/core';
 import { BondModule } from './bond/bond.module';
+import { AppController } from './app.controller';
 
 @Module({
   imports: [
@@ -11,6 +12,7 @@ import { BondModule } from './bond/bond.module';
     }]),
     BondModule,
   ],
+  controllers: [AppController],
   providers: [
     {
       provide: APP_GUARD,

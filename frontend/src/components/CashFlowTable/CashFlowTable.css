@@ -14,13 +14,26 @@
 .table-heading {
   display: flex;
   align-items: center;
-  gap: 0.8vw;
-  font-size: var(--text-base);
-  padding: 1.5vh 1.5vw;
+  justify-content: space-between;
+  padding: 16px 24px;
   border-bottom: 1px solid var(--clr-border);
   flex-shrink: 0;
+  background: white;
+}
+
+.heading-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: var(--text-base);
   font-weight: 800;
   color: var(--clr-text);
+}
+
+.heading-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .table-badge {
@@ -91,10 +104,16 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  font-size: 0.65rem;
-  padding: 1vh 1.5vw;
+  font-size: 11px;
+  padding: 12px 18px;
   text-align: right;
   border-bottom: 1px solid var(--clr-border);
+}
+
+/* Align identifiers and dates to the left */
+.cash-flow-table th:nth-child(1),
+.cash-flow-table th:nth-child(2) {
+  text-align: left;
 }
 
 .short-text { display: none; }
@@ -103,11 +122,16 @@
 .cash-flow-table th:last-child { border-top-right-radius: var(--radius-lg); }
 
 .cash-flow-table td {
-  padding: 0.8vh 1.5vw;
+  padding: 12px 18px;
   text-align: right;
   border-bottom: 1px solid #F3F4F6;
   color: #374151;
   white-space: nowrap;
+}
+
+.cash-flow-table td:nth-child(1),
+.cash-flow-table td:nth-child(2) {
+  text-align: left;
 }
 
 .cash-flow-table td:first-child { text-align: left; font-weight: 700; color: var(--clr-muted); }
