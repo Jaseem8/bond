@@ -22,6 +22,7 @@ export function useBondForm() {
   const [form, setForm] = useState<FormState>(initialForm);
   const [results, setResults] = useState<BondResults | null>(null);
   const [loading, setLoading] = useState(false);
+  const [takingLonger, setTakingLonger] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const handleChange = useCallback(
@@ -57,7 +58,11 @@ export function useBondForm() {
       }
 
       setLoading(true);
+      setTakingLonger(false);
       setError(null);
+
+      // Show "Waking up" message after 3 seconds
+      const timer = setTimeout(() => setTakingLonger(true), 3000);
       
       try {
         const inputs: BondInputs = {
@@ -74,11 +79,13 @@ export function useBondForm() {
         const rawMsg = err instanceof Error ? err.message : 'Something went wrong';
         setError(rawMsg.replace(/<[^>]*>?/gm, '')); // Simple sanitization
       } finally {
+        clearTimeout(timer);
         setLoading(false);
+        setTakingLonger(false);
       }
     },
     [form],
   );
 
-  return { form, results, loading, error, handleChange, handleSubmit };
+  return { form, results, loading, takingLonger, error, handleChange, handleSubmit };
 }

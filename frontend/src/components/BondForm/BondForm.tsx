@@ -10,12 +10,13 @@ interface Props {
     couponFrequency: '1' | '2';
   };
   loading: boolean;
+  takingLonger?: boolean;
   error: string | null;
   onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
   onSubmit: (e: React.FormEvent) => void;
 }
 
-export function BondForm({ form, loading, error, onChange, onSubmit }: Props) {
+export function BondForm({ form, loading, takingLonger, error, onChange, onSubmit }: Props) {
   return (
     <form className="bond-form" onSubmit={onSubmit} noValidate>
       <div className="form-header">
@@ -103,12 +104,18 @@ export function BondForm({ form, loading, error, onChange, onSubmit }: Props) {
         {loading ? (
           <span className="btn-loading">
             <span className="spinner" />
-            Calculating…
+            {takingLonger ? 'Waking up server…' : 'Calculating…'}
           </span>
         ) : (
           '⚡ Calculate'
         )}
       </button>
+
+      {loading && takingLonger && (
+        <p className="loading-note">
+          ☕ The server is waking up after being idle. This may take up to 60 seconds.
+        </p>
+      )}
     </form>
   );
 }

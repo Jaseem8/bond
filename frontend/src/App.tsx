@@ -1,11 +1,18 @@
+import { useEffect } from 'react';
 import { BondForm } from './components/BondForm/BondForm';
 import { BondResults } from './components/BondResults/BondResults';
 import { useBondForm } from './hooks/useBondForm';
+import { pingServer } from './api/api';
 import './App.css';
 
 export default function App() {
-  const { form, results, loading, error, handleChange, handleSubmit } =
+  const { form, results, loading, takingLonger, error, handleChange, handleSubmit } =
     useBondForm();
+
+  // "Wake up" the backend immediately on mount (Render Free Tier)
+  useEffect(() => {
+    pingServer();
+  }, []);
 
   return (
     <div className="app">
@@ -25,6 +32,7 @@ export default function App() {
           <BondForm
             form={form}
             loading={loading}
+            takingLonger={takingLonger}
             error={error}
             onChange={handleChange}
             onSubmit={handleSubmit}

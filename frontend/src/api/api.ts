@@ -22,11 +22,25 @@ export async function calculateBond(inputs: BondInputs): Promise<BondResults> {
     // Handle successful response
     return await response.json();
   } catch (err) {
-    // This catches network errors AND the errors we throw above
+    if (err instanceof TypeError && err.message === 'Failed to fetch') {
+      throw new Error('Server is taking longer to respond than expected. It might be waking up from sleep (Render Free Tier). Please wait 30 seconds and try again.');
+    }
     if (err instanceof Error) {
       throw err;
     }
     throw new Error('An unexpected error occurred during calculation');
+  }
+}
+
+/**
+ * Simple GET call to "warm up" the server (Render Free Tier)
+ */
+export async function pingServer(): Promise<void> {
+  try {
+    await fetch(BASE_URL, { method: 'GET' });
+  } catch (err) {
+    // Silently fail as this is just a warm-up call
+    console.log('Warm-up call delayed or failed: server is likely sleeping.');
   }
 }
 

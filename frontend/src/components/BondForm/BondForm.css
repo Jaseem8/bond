@@ -133,6 +133,23 @@
   animation: spin 0.7s linear infinite;
 }
 
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+.loading-note {
+  font-size: 11px;
+  color: var(--clr-muted);
+  text-align: center;
+  background: rgba(34, 197, 94, 0.05);
+  border: 1px dashed var(--clr-primary);
+  border-radius: var(--radius-sm);
+  padding: 1vh 0.8vw;
+  margin-top: 1vh;
+  line-height: 1.4;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
 /* ── Responsive ── */
 @media (max-width: 860px) {
   .bond-form {
