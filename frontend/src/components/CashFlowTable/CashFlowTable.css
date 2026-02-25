@@ -149,7 +149,8 @@
   .short-text { display: inline; }
   
   .cash-flow-wrapper {
-    height: 550px; 
+    height: 100%; 
+    min-height: 0;
     overflow: hidden;
     width: 100%;
   }
