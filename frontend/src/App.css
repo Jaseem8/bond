@@ -148,7 +148,7 @@
     min-height: 0;
     gap: 16px;
     padding: 0;
-    padding-bottom: 75px; /* Added padding to clear the floating bottom pill */
+    padding-bottom: 60px; /* Added padding to clear the floating bottom pill */
   }
   .form-col, .results-col { 
     flex: 1;
